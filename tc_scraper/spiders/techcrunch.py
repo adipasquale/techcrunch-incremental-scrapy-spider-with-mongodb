@@ -2,7 +2,7 @@
 import scrapy
 import re
 from tc_scraper.items import BlogPost
-from dateutil import parser
+import datetime
 from tc_scraper.mongo_provider import MongoProvider
 
 
@@ -58,8 +58,8 @@ class TechcrunchSpider(scrapy.Spider):
         yield(item)
 
     def extract_post_date(self, response):
-        date_text = response.css("meta[name='sailthru.date']::attr(content)")
-        return parser.parse(date_text.extract_first())
+        date_text = response.css("meta[name='sailthru.date']::attr(content)").extract_first()
+        return datetime.datetime.strptime(date_text, "%Y-%m-%d %H:%M:%S" )
 
     def extract_content(self, response):
         paragraphs_texts = [
