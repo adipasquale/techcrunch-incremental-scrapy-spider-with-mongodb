@@ -1,5 +1,7 @@
 # Techcrunch Incremental Scrapy Spider With MongoDB
 
+This project is the support for this blog post : [Incremental crawler with Scrapy and MongoDB](https://blog.dipasquale.fr/en/2018/12/17/incremental-scraping-with-scrapy-and-mongo/)
+
 ## Local setup
 
 ```sh

@@ -4,8 +4,6 @@ from tc_scraper.mongo_provider import MongoProvider
 
 class MongoPipeline(object):
 
-    collection_name = 'tc_posts'
-
     def __init__(self, settings):
         self.mongo_provider = MongoProvider(
             settings.get('MONGO_URI'),

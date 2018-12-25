@@ -12,13 +12,10 @@ class TechcrunchSpider(scrapy.Spider):
     start_urls = ['http://techcrunch.com/']
 
     @classmethod
-    def from_crawler(cls, crawler, **kwargs):
-        settings = crawler.settings
-        return cls(
-            mongo_uri=settings.get('MONGO_URI'),
-            mongo_database=settings.get('MONGO_DATABASE'),
-            **kwargs
-        )
+    def from_crawler(cls, crawler, *args, **kwargs):
+        kwargs['mongo_uri'] = crawler.settings.get("MONGO_URI")
+        kwargs['mongo_database'] = crawler.settings.get('MONGO_DATABASE')
+        return super(TechcrunchSpider, cls).from_crawler(crawler, *args, **kwargs)
 
     def __init__(self, limit_pages=None, mongo_uri=None, mongo_database=None, *args, **kwargs):
         super(TechcrunchSpider, self).__init__(*args, **kwargs)
